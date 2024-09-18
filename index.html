@@ -12,6 +12,21 @@
   <body>
     <main>
         <h1>Sustainability App</h1>  
+        <!-- Drop Down HTML Begin-->
+        <div class="dropdown">
+          <button class="dropbtn">Sort</button>
+          <div class="dropdown-content">
+            <!-- <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a> -->
+            <button onclick="sort('alpha')" >Alphabetical</button>
+            <button onclick="sort('env')" >Environmental Score</button>
+            <button onclick="sort('gov')" >Government Score</button>
+            <button onclick="sort('social')" >Social Score</button>
+            <button onclick="sort('total')" >Total Score</button>
+          </div>
+        </div>
+        <!-- Drop Down HTML End-->
     </main>
     <script type="text/javascript" src="data.json"></script>
     <script src="script.js"></script>

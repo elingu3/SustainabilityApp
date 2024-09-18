@@ -47,6 +47,14 @@ function filterObject(company, currency = undefined, exchange = undefined, indus
     return true;
 }
 
+function sort(sortType){
+    //Apply Filter first (if applicable)
+    let result = filterDatabase();
+    //Apply sort
+    sortDatabase(result, sortType);
+    console.log(result);
+}
+
 //Sort Options:
 //Name Alphabetical
 //Environmental Score
@@ -62,21 +70,68 @@ const SORT_OPTIONS = {
     Total : "total"
 }
 
-function sortDatabase(sortType, reverse = false){
+function sortDatabase(collection, sortType, reverse = false){
     switch(sortType){
         case SORT_OPTIONS.Alphabetical:
+            sortAlphabetical(collection, reverse);
             break;
         case SORT_OPTIONS.Environmntal:
+            sortEnvironmental(collection, reverse);
             break;
         case SORT_OPTIONS.Governance:
+            sortGovernance(collection, reverse);
             break;
         case SORT_OPTIONS.Social:
+            sortSocial(collection, reverse);
             break;
         case SORT_OPTIONS.Total:
+            sortTotal(collection, reverse);
             break;
         default:
     }
 }
-function sortAlphabetical(){
 
+function sortAlphabetical(collection, reverse){
+    if (reverse){
+        collection.sort((a,b) => b.name.localeCompare(a.name));
+    }
+    else{
+        collection.sort((a,b) => a.name.localeCompare(b.name));
+    }
+}
+
+function sortEnvironmental(collection, reverse){
+    if (reverse){
+        collection.sort((a,b) => b.environment_score - a.environment_score);
+    }
+    else{
+        collection.sort((a,b) => a.environment_score - b.environment_score);
+    }
+}
+
+function sortGovernance(collection, reverse){
+    if (reverse){
+        collection.sort((a,b) => b.governance_score - a.governance_score);
+    }
+    else{
+        collection.sort((a,b) => a.governance_score - b.governance_score);
+    }
+}
+
+function sortSocial(collection, reverse){
+    if (reverse){
+        collection.sort((a,b) => b.social_score - a.social_score);
+    }
+    else{
+        collection.sort((a,b) => a.social_score - b.social_score);
+    }
+}
+
+function sortTotal(collection, reverse){
+    if (reverse){
+        collection.sort((a,b) => b.total_score - a.total_score);
+    }
+    else{
+        collection.sort((a,b) => a.total_score - b.total_score);
+    }
 }
